@@ -105,7 +105,8 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             value='US'
         ),
     ],
-    style={'width': '10%', 'display': 'inline-block'}),
+    style={'width': '15%',
+           'display': 'inline-block'}),
 
     dcc.Graph(id='Country by Country Data')
 ])
@@ -131,7 +132,7 @@ def update_graph(country_dropdown):
                         'size': 15,
                         'line': {'width': 0.5, 'color': 'blue'}
                     },
-                    name='Total Cases'
+                    name='Cases',
                 ),
             go.Line(
                     x=country_death.index,
@@ -143,7 +144,7 @@ def update_graph(country_dropdown):
                         'size': 15,
                         'line': {'width': 0.5, 'color': 'red'}
                     },
-                    name='Total Deaths'
+                    name='Deaths'
                 ),
             go.Line(
                     x=country_recovery.index,
@@ -155,13 +156,16 @@ def update_graph(country_dropdown):
                         'size': 15,
                         'line': {'width': 0.5, 'color': 'Red'}
                     },
-                    name='Total Recovered'
+                    name='Recovered'
                 )],
         'layout': {
                 'plot_bgcolor': colors['background'],
                 'paper_bgcolor': colors['background'],
                 'font': {
-                    'color': colors['text']}
+                    'color': colors['text']},
+                'title': {
+                    'text': f'{country_dropdown}'
+                }
         }
 }
 
